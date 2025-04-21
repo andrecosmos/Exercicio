@@ -85,7 +85,7 @@ public class Carro {
         System.out.println("Modelo veículo : " + getModelo());
         System.out.println("Ano do veículo : " + getAno());
         System.out.println("Cor do veículo : " + getCor());
-        System.out.println("lICENCIADO : " + getLicenciado());
+        System.out.println("Licenciado : " + getLicenciado());
 
     }
 
