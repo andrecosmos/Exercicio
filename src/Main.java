@@ -1,15 +1,35 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        EntradaDados dados = new EntradaDados();
+
+        List<Carro> carros = new ArrayList<>();
+
+        boolean continuar = true;
+
+        while (continuar) {
+            Carro carro = dados.cadastraCarro();
+            carros.add(carro);
+
+            System.out.print("\nDeseja cadastrar outro carro? (s/n): ");
+            String resposta = dados.lerTela().toLowerCase();
+            continuar = resposta.equals("s");
         }
+
+        dados.fecharScanner();
+
+        System.out.println("\n************ Carros cadastrados !! ***********");
+        for (Carro c : carros) {
+            c.exibirCarro();
+            System.out.println("Tempo de uso : " + c.calculaIdade() + " anos");
+            System.out.println("-----------------------------");
+        }
+
+        SalvarArquivo.salvarCarros(carros, "carros.csv");
+
     }
 }
